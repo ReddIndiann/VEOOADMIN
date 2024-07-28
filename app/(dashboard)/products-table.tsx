@@ -16,17 +16,57 @@ import {
   CardTitle
 } from '@/components/ui/card';
 import { Product } from './product';
-import { SelectProduct } from '@/lib/db';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+const dummyProducts = [
+  {
+    id: 1,
+    name: 'Product 1',
+    status: 'Available',
+    price: '$10.00',
+    totalSales: 100,
+    createdAt: '2023-01-01'
+  },
+  {
+    id: 2,
+    name: 'Product 2',
+    status: 'Out of Stock',
+    price: '$15.00',
+    totalSales: 50,
+    createdAt: '2023-02-01'
+  },
+  {
+    id: 3,
+    name: 'Product 3',
+    status: 'Available',
+    price: '$20.00',
+    totalSales: 200,
+    createdAt: '2023-03-01'
+  },
+  {
+    id: 4,
+    name: 'Product 4',
+    status: 'Available',
+    price: '$25.00',
+    totalSales: 150,
+    createdAt: '2023-04-01'
+  },
+  {
+    id: 5,
+    name: 'Product 5',
+    status: 'Out of Stock',
+    price: '$30.00',
+    totalSales: 75,
+    createdAt: '2023-05-01'
+  }
+];
+
 export function ProductsTable({
-  products,
   offset,
   totalProducts
 }: {
-  products: SelectProduct[];
   offset: number;
   totalProducts: number;
 }) {
@@ -69,7 +109,7 @@ export function ProductsTable({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {products.map((product) => (
+            {dummyProducts.map((product) => (
               <Product key={product.id} product={product} />
             ))}
           </TableBody>

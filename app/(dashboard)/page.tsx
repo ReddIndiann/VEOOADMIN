@@ -2,19 +2,61 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { File, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductsTable } from './products-table';
-import { getProducts } from '@/lib/db';
 
-export default async function ProductsPage({
+export default function ProductsPage({
   searchParams
 }: {
   searchParams: { q: string; offset: string };
 }) {
   const search = searchParams.q ?? '';
-  const offset = searchParams.offset ?? 0;
-  const { products, newOffset, totalProducts } = await getProducts(
-    search,
-    Number(offset)
-  );
+  const offset = parseInt(searchParams.offset ?? '0');
+
+  const dummyProducts = [
+    {
+      id: 1,
+      name: 'Product 1',
+      status: 'Available',
+      price: '$10.00',
+      totalSales: 100,
+      createdAt: '2023-01-01'
+    },
+    {
+      id: 2,
+      name: 'Product 2',
+      status: 'Out of Stock',
+      price: '$15.00',
+      totalSales: 50,
+      createdAt: '2023-02-01'
+    },
+    {
+      id: 3,
+      name: 'Product 3',
+      status: 'Available',
+      price: '$20.00',
+      totalSales: 200,
+      createdAt: '2023-03-01'
+    },
+    {
+      id: 4,
+      name: 'Product 4',
+      status: 'Available',
+      price: '$25.00',
+      totalSales: 150,
+      createdAt: '2023-04-01'
+    },
+    {
+      id: 5,
+      name: 'Product 5',
+      status: 'Out of Stock',
+      price: '$30.00',
+      totalSales: 75,
+      createdAt: '2023-05-01'
+    }
+  ];
+
+  const totalProducts = dummyProducts.length;
+  const productsPerPage = 5;
+  const newOffset = Math.min(offset + productsPerPage, totalProducts);
 
   return (
     <Tabs defaultValue="all">
@@ -44,8 +86,8 @@ export default async function ProductsPage({
       </div>
       <TabsContent value="all">
         <ProductsTable
-          products={products}
-          offset={newOffset ?? 0}
+          products={dummyProducts}
+          offset={newOffset}
           totalProducts={totalProducts}
         />
       </TabsContent>

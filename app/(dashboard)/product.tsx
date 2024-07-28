@@ -10,10 +10,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
 import { TableCell, TableRow } from '@/components/ui/table';
-import { SelectProduct } from '@/lib/db';
-import { deleteProduct } from './actions';
+// import { SelectProduct } from '@/lib/db';
+// import { deleteProduct } from './actions';
 
-export function Product({ product }: { product: SelectProduct }) {
+export function Product({  }: {}) {
   return (
     <TableRow>
       <TableCell className="hidden sm:table-cell">
@@ -21,20 +21,20 @@ export function Product({ product }: { product: SelectProduct }) {
           alt="Product image"
           className="aspect-square rounded-md object-cover"
           height="64"
-          src={product.imageUrl}
+          src='/'
           width="64"
         />
       </TableCell>
-      <TableCell className="font-medium">{product.name}</TableCell>
+      <TableCell className="font-medium">name</TableCell>
       <TableCell>
         <Badge variant="outline" className="capitalize">
-          {product.status}
+    status
         </Badge>
       </TableCell>
-      <TableCell className="hidden md:table-cell">{`$${product.price}`}</TableCell>
-      <TableCell className="hidden md:table-cell">{product.stock}</TableCell>
+      <TableCell className="hidden md:table-cell">{`$90`}</TableCell>
+      <TableCell className="hidden md:table-cell">stock</TableCell>
       <TableCell className="hidden md:table-cell">
-        {product.availableAt.toLocaleDateString()}
+      9/09
       </TableCell>
       <TableCell>
         <DropdownMenu>
@@ -48,7 +48,7 @@ export function Product({ product }: { product: SelectProduct }) {
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem>Edit</DropdownMenuItem>
             <DropdownMenuItem>
-              <form action={deleteProduct}>
+              <form >
                 <button type="submit">Delete</button>
               </form>
             </DropdownMenuItem>
